@@ -1,24 +1,76 @@
-# picalloc
+# Picalloc - 哔咔漫画网页版
 
-## Project setup
+### 这是什么？
+
+这是一个使用 Vue+Flask 编写的网页版某粉色 App ， 主要是给不想越狱、不想自签名 ipa 的 iOS 用户提供一个方便的绅士体验
+
+### 我该如何使用呢？
+
+##### 部署前端
+
+将本仓库 clone 到本地
+
+`git clone https://github.com/Titvt/Picalloc.git`
+
+使用 npm 构建项目
+
+`npm run build`
+
+将 dist 目录下的文件放到你的 web 应用根目录下，若使用浏览器能正常访问则代表前端部署完毕
+
+##### 部署后端
+
+将 server 目录下的文件放到你的服务器上，在同一目录下创建 config.json ，填写配置信息
+
 ```
-yarn install
+{
+  "username": "必填，哔咔用户名",
+  "password": "必填，哔咔密码",
+  "proxy": "选填，国内机子基本必填，以使用clash代理为例：127.0.0.1:7890",
+  "key": "选填，不填或留空则密钥为空"
+}
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+安装 Python ，推荐 3.9+ 版本，安装依赖模块
 
-### Compiles and minifies for production
-```
-yarn build
-```
++ requests
 
-### Lints and fixes files
-```
-yarn lint
-```
++ flask
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
++ flask_cors
+
+安装 gunicorn ，执行以下命令启动后端服务
+
+`gunicorn -w 4 -b 0.0.0.0:2333 app:app`
+
+此处的示例使用了 4 个 worker ，绑定的端口为 2333
+
+worker 的数量可以视情况而定，如果你只是一个人使用，且你的服务器性能较低，建议改成 1 个 worker，反之，如果你打算让大量的人访问你的高性能服务器，建议改大一点
+
+##### 连接服务器
+
+使用浏览器打开，可以看到跳转到了设置页面，输入后端服务器的地址和密钥，点击连接按钮，若出现连接服务器成功的提示则表示可以开始使用啦~
+
+连接成功后下次打开会自动连接，需要注意的是，服务器地址的格式如下
+
+`http(s)://xxx(:port)`
+
+### 为啥我加载不了图片捏？
+
+只有 API 是经过服务器处理的，图片链接是用你的浏览器去访问的，所以你的设备需要科学上网
+
+### 功能好少！
+
+目前仅实现了最基础也是最重要的功能，未来也许会支持更多功能：
+
++ 独立账号登录、注册账号、修改账号信息
+
++ 签到打卡
+
++ 收藏与点赞
+
++ 查看与发送评论
+
++ 按条件屏蔽本子
+
++ ……
