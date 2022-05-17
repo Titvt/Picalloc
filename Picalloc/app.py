@@ -15,7 +15,7 @@ try:
 except:
     exit(0)
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='index/static', template_folder='index')
 
 
 @app.route('/')
