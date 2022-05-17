@@ -3,7 +3,8 @@
   <view-comic-item v-for="item in items"
                    :key="item.comic"
                    v-bind="item"/>
-  <div class="pager" v-if="total!==0">
+  <div v-if="total!==0"
+       class="pager">
     <span v-if="page>1"
           @click="prev">
       上一页

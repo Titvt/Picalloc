@@ -2,9 +2,9 @@
 
 import json
 
+from flask import Flask, request, render_template
+
 import api
-from flask import Flask, request
-from flask_cors import CORS
 
 try:
     with open('config.json', 'rb') as f:
@@ -13,11 +13,14 @@ try:
     api.proxy = config['proxy'] if 'proxy' in config else None
     api.token = api.login(config['username'], config['password'])['token']
 except:
-    print('[*] Login failed. Please check the network or config.json.')
     exit(0)
 
 app = Flask(__name__)
-CORS(app, resources='/*')
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/auth', methods=['POST'])

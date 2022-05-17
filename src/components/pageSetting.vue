@@ -3,22 +3,22 @@
     <span class="title">
       | 服务器设置
     </span>
-    <span class="succ msg" v-if="authSuccMsg!==''">
+    <span v-if="authSuccMsg!==''"
+          class="succ msg">
       {{ authSuccMsg }}
     </span>
-    <span class="fail msg" v-else-if="authFailMsg!==''">
+    <span v-else-if="authFailMsg!==''"
+          class="fail msg">
       {{ authFailMsg }}
     </span>
-    <span class="msg" v-else>
+    <span v-else
+          class="msg">
       {{ authMsg }}
     </span>
-    <input type="text"
-           placeholder="Server"
-           v-model="server"/>
-    <input type="password"
-           placeholder="Key"
-           v-model="key"/>
-    <div class="btn" @click="auth">
+    <input v-model="key"
+           type="password"/>
+    <div class="btn"
+         @click="auth">
       连接
     </div>
   </div>
@@ -32,17 +32,15 @@
 
 <script>
 import { globals, request } from '@/util'
-import axios from 'axios'
 
 export default {
   name: 'pageSetting',
   data() {
     return {
-      server: localStorage.getItem('server') ?? '',
       key: localStorage.getItem('key') ?? '',
       authSuccMsg: '',
       authFailMsg: '',
-      authMsg: '服务器地址末尾不要加“/”哦~',
+      authMsg: '若没有设置密钥请留空',
     }
   },
   methods: {
@@ -51,9 +49,7 @@ export default {
       this.authSuccMsg = ''
       this.authFailMsg = ''
       this.authMsg = '正在连接中……'
-      localStorage.setItem('server', this.server)
       localStorage.setItem('key', this.key)
-      axios.defaults.baseURL = this.server
       request('/auth', {
         key: this.key,
       }, () => {

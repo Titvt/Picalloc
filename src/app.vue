@@ -1,13 +1,13 @@
 <template>
   <div id="topbar">
-    <img src="@/assets/home.png"
-         alt=""
+    <img alt=""
+         src="@/assets/home.png"
          @click="home"/>
     <span>
       哔咔漫画
     </span>
-    <img src="@/assets/setting.png"
-         alt=""
+    <img alt=""
+         src="@/assets/setting.png"
          @click="setting"/>
   </div>
   <router-view v-if="!authing"/>
@@ -30,11 +30,9 @@ export default {
         this.$router.push('/setting')
       }
     })
-    let server = localStorage.getItem('server') ?? ''
-    let key = localStorage.getItem('key') ?? ''
-    axios.defaults.baseURL = server
+    axios.defaults.baseURL = `${location.protocol}//${location.host}`
     request('/auth', {
-      key: key,
+      key: localStorage.getItem('key') ?? '',
     }, () => {
       globals.authed = true
       this.authing = false

@@ -5,8 +5,8 @@
       | 随机本子推荐
     </span>
     <div @click="getRandom">
-      <img src="@/assets/refresh.png"
-           alt=""/>
+      <img alt=""
+           src="@/assets/refresh.png"/>
       <span>
         换一批
       </span>

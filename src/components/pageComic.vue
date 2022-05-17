@@ -1,5 +1,6 @@
 <template>
-  <div class="header" v-if="cover!==''">
+  <div v-if="cover!==''"
+       class="header">
     <img :src="cover"
          alt=""/>
     <div>
@@ -10,8 +11,8 @@
         {{ author }}
       </span>
       <div>
-        <img src="@/assets/love.png"
-             alt=""/>
+        <img alt=""
+             src="@/assets/love.png"/>
         <span>
           {{ likeCount }}
         </span>
@@ -21,7 +22,8 @@
       </div>
     </div>
   </div>
-  <div class="tags" v-if="tags.length!==0">
+  <div v-if="tags.length!==0"
+       class="tags">
     <div v-for="tag in tags"
          :key="tag">
       <span @click="search(tag)">
@@ -29,10 +31,12 @@
       </span>
     </div>
   </div>
-  <div class="description" v-if="description!==''">
+  <div v-if="description!==''"
+       class="description">
     {{ description }}
   </div>
-  <div class="eps" v-if="eps.length!==0">
+  <div v-if="eps.length!==0"
+       class="eps">
     <div v-for="ep in eps"
          :key="ep.eps">
       <span @click="viewComic(ep.eps)">
@@ -40,7 +44,8 @@
       </span>
     </div>
   </div>
-  <div class="recom" v-if="recoms.length!==0">
+  <div v-if="recoms.length!==0"
+       class="recom">
     <span>
       猜你喜欢
     </span>

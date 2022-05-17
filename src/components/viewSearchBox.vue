@@ -1,28 +1,28 @@
 <template>
   <div class="search">
-    <input type="text"
-           v-model="keyword"
+    <input v-model="keyword"
+           type="text"
            @keydown.enter="search(keyword)"/>
-    <img src="@/assets/search.png"
-         alt=""
+    <img alt=""
+         src="@/assets/search.png"
          @click="search(keyword)"/>
   </div>
   <div class="keywords">
-    <div class="official"
-         v-for="keyword in keywords.official"
-         :key="keyword">
+    <div v-for="keyword in keywords.official"
+         :key="keyword"
+         class="official">
       <span @click="search(keyword)">
         {{ keyword }}
       </span>
     </div>
-    <div class="history"
-         v-for="keyword in keywords.history"
-         :key="keyword">
+    <div v-for="keyword in keywords.history"
+         :key="keyword"
+         class="history">
       <span @click="search(keyword)">
         {{ keyword }}
       </span>
-      <img src="@/assets/remove.png"
-           alt=""
+      <img alt=""
+           src="@/assets/remove.png"
            @click="remove(keyword)"/>
     </div>
   </div>

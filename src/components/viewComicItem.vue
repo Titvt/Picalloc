@@ -11,8 +11,8 @@
         {{ author }}
       </span>
       <div>
-        <img src="@/assets/love.png"
-             alt=""/>
+        <img alt=""
+             src="@/assets/love.png"/>
         <span>
           {{ likeCount }}
         </span>
